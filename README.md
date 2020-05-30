@@ -1,7 +1,7 @@
 # pyshed
 Simple Docker image for running Python projects with Poetry.
 
-Getting python up and running can be difficult. This docker image provides recent pythons, with poetry ready to use for your project.
+Getting python up and running can be difficult. This docker image provides a [recent version of Python](https://hub.docker.com/_/python), with [Poetry](https://python-poetry.org/) for packaging and dependency management ready to use for your project, without any additional setup.
 
 ## Users
 
@@ -9,7 +9,9 @@ In the directory of your python project, run this:
 
     docker run --rm -ti -v "$PWD:/var/app" svandragt/pyshed 
 
-Additional arguments can be passed to poetry directly, eg:
+Additional arguments are passed to poetry directly.
+
+## Examples
 
 poetry init:
 
