@@ -1,5 +1,5 @@
 # pyshed
-Simple Docker image for running Python Poetry projects.
+Simple Docker image for running Python projects with Poetry.
 
 Getting python up and running can be difficult. This docker image provides recent pythons, with poetry ready to use for your project.
 
