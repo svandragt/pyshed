@@ -25,7 +25,7 @@ poetry install:
 
 ![install](https://user-images.githubusercontent.com/594871/83328154-d3b74500-a278-11ea-8bda-4aa07362248a.png)
 
-start django server after installation (visit [http://localhost:8000](http://localhost:8000):
+start django server (visit [http://localhost:8000](http://localhost:8000)):
 
     docker run -p 8000:8000 --rm -ti -v "$PWD:/var/app" svandragt/pyshed run ./manage.py runserver 0.0.0.0:8000
 
