@@ -31,8 +31,3 @@ start django server (visit [http://localhost:8000](http://localhost:8000)):
 
 ![runserver](https://user-images.githubusercontent.com/594871/83328155-d5810880-a278-11ea-8947-f277f9e21afd.png)
 
-## Maintainer
-
-build:
-
-    docker build -t svandragt/pyshed:0.1 .
