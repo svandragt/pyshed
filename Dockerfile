@@ -1,4 +1,4 @@
-FROM python:3.8.3
+FROM python:3.9.0
 COPY ./docker-entrypoint.sh /entrypoint.sh
 RUN chmod 755 /entrypoint.sh && useradd --create-home --shell /bin/bash app
 RUN python -m pip install -U pip
