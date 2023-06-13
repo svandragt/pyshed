@@ -1,0 +1,56 @@
+name: Patch Release Tag for Dependabot
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  create_patch_release_tag:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check if the PR is from Dependabot
+        uses: actions/github-script@v4
+        with:
+          script: |
+            const pr = await github.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number
+            });
+
+            if (pr.data.user.login === 'dependabot[bot]') {
+              core.setOutput('is_dependabot', true);
+            } else {
+              core.setOutput('is_dependabot', false);
+            }
+        id: check_dependabot
+
+      - name: Create Patch Release Tag
+        if: steps.check_dependabot.outputs.is_dependabot == 'true'
+        uses: actions/github-script@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          script: |
+            const { Octokit } = require("@octokit/rest");
+            const octokit = new Octokit();
+
+            const latestTag = await octokit.repos.getLatestRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            });
+
+            const tagParts = latestTag.data.tag_name.split(".");
+            tagParts[2] = (parseInt(tagParts[2]) + 1).toString();
+            const newTag = tagParts.join(".");
+
+            await octokit.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: `refs/tags/${newTag}`,
+              sha: context.sha
+            });
+
+            console.log(`Created new patch release tag: ${newTag}`);
