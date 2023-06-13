@@ -3,6 +3,8 @@ Simple Docker image for running zero configuration Python projects with Poetry d
 
 Getting python up and running can be difficult. This docker image provides a [recent version of Python](https://hub.docker.com/_/python), with [Poetry](https://python-poetry.org/) for packaging and dependency management ready to use for your project, without any additional setup.
 
+(WIP: New container images are pushed to Docker Hub after Dependabot PRs are merged)
+
 ## Users
 
 In the directory of your python project, run this:
