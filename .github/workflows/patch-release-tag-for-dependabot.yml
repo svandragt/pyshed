@@ -11,7 +11,7 @@ jobs:
     
     steps:
       - name: Check if the PR is from Dependabot
-        uses: actions/github-script@v4
+        uses: actions/github-script@v9
         with:
           script: |
             const pr = await github.pulls.get({
@@ -29,7 +29,7 @@ jobs:
 
       - name: Create Patch Release Tag
         if: steps.check_dependabot.outputs.is_dependabot && github.event.pull_request.merged
-        uses: actions/github-script@v4
+        uses: actions/github-script@v9
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
